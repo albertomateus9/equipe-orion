@@ -1,0 +1,132 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #060b11;
+    color: #b3bdc9;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-principal {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+    height: calc(100vh - 50px);
+}
+
+.secao-esquerda {
+    flex: 6.5;
+    background-color: #0f1622;
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #1e293b;
+    display: flex;
+    flex-direction: column;
+}
+
+.topo-tabela h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+#indicador-pagina {
+    background-color: #1e293b;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.topo-tabela { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+
+/* ESTILIZAÇÃO DA GRADE */
+.painel-tabela { width: 100%; border-collapse: collapse; text-align: left; }
+.painel-tabela th { background-color: #060b11; color: #66fcf1; padding: 18px; font-size: 1.1rem; }
+.painel-tabela td { padding: 20px 18px; border-bottom: 1px solid #1e293b; font-size: 1.3rem; }
+
+.txt-turma { color: #ff007f; font-weight: bold; font-size: 1.4rem; }
+.txt-branco { color: #ffffff; }
+
+/* CORES DAS TAGS DE LOCAL (Foco total na Mudança de Sala) */
+.tag-local {
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.ambiente-padrao { background-color: #1e293b; color: #cbd5e1; } /* Sala comum */
+.ambiente-lab { background-color: #004d40; color: #00f2ff; border: 1px solid #00f2ff; } /* Labs de info */
+.ambiente-multimidia { background-color: #4a148c; color: #f3e5f5; } /* Vídeo/Multimídia */
+.ambiente-cancelado { background-color: #7f1d1d; color: #fca5a5; animation: piscar 1s infinite; }
+
+/* SEÇÃO DA DIREITA */
+.secao-direita { flex: 3.5; display: flex; flex-direction: column; gap: 20px; }
+
+.card-relogio { background-color: #111927; border: 1px solid #1e293b; border-radius: 12px; padding: 25px; text-align: center; }
+#relogio { font-size: 3.2rem; color: #ffffff; font-family: monospace; font-weight: bold; }
+#data-atual { color: #66fcf1; font-size: 1.1rem; margin-top: 5px; text-transform: capitalize; }
+
+/* CARD QUE ALTERNA SOZINHO (IMAGEM OU TEXTO) */
+.card-midia-alternante {
+    background-color: #0f1622;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-midia-alternante h3 {
+    color: #66fcf1;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #1e293b;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.lista-avisos li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 12px;
+    border-left: 3px solid #ff007f;
+    color: #e2e8f0;
+}
+
+/* FORMATADOR DE IMAGEM PARA ENCAIXAR NA TELA */
+.wrapper-mapa {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #060b11;
+    border-radius: 8px;
+}
+
+.img-mapa-tela {
+    max-width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+/* RODAPÉ MARQUETE */
+.rodape-urgente { background-color: #000; border-top: 2px solid #ff0055; height: 50px; display: flex; align-items: center; overflow: hidden; }
+.marquete-container { white-space: nowrap; overflow: hidden; width: 100%; }
+#texto-corrido { display: inline-block; padding-left: 100%; animation: barraCorrendo 25s linear infinite; font-size: 1.2rem; color: #ffffff; }
+
+@keyframes barraCorrendo { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+@keyframes piscar { 50% { opacity: 0.4; } }

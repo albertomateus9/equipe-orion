@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Rotatividade de Salas - EETEPA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container-principal">
+        
+        <!-- PAINEL DA ESQUERDA: AS TURMAS E ONDE ESTÃO AGORA -->
+        <section class="secao-esquerda">
+            <div class="topo-tabela">
+                <h2>EETEPA VILHENA ALVES - QUADRO DE SALAS HOJE</h2>
+                <div id="indicador-pagina">PÁGINA 1 DE 1</div>
+            </div>
+            
+            <table class="painel-tabela">
+                <thead>
+                    <tr>
+                        <th>TURMA</th>
+                        <th>DISCIPLINA</th>
+                        <th>PROFESSOR</th>
+                        <th>LOCAL DE HOJE</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-corpo">
+                    <!-- Gerado dinamicamente -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- PAINEL DA DIREITA: RELÓGIO + CARROSSEL DE MAPAS/AVISOS -->
+        <aside class="secao-direita">
+            <div class="card-relogio">
+                <div id="relogio">00:00:00</div>
+                <div id="data-atual">Carregando data...</div>
+            </div>
+
+            <!-- CONTAINER DINÂMICO QUE MUTA SOZINHO -->
+            <div class="card-midia-alternante" id="container-midia">
+                <!-- O JavaScript vai alternar entre texto de aviso e imagem do mapa aqui -->
+            </div>
+        </aside>
+
+    </div>
+
+    <footer class="rodape-urgente">
+        <div class="marquete-container">
+            <span id="texto-corrido">Carregando...</span>
+        </div>
+    </footer>
+
+    <script src="dados.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
