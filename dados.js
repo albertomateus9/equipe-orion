@@ -25,10 +25,26 @@ const avisosSecretaria = [
     "Biblioteca aberta hoje até às 21h45."
 ];
 
-// Imagens dos mapas (Deixe imagens padrão na pasta ou comente se não tiver)
+// Imagens dos mapas
 const imagensMapas = [
     "mapa_bloco_a.png",
     "mapa_laboratorios.png"
 ];
 
 const textoRodapeUrgente = "EETEPA VILHENA ALVES | Atenção alunos: fiquem atentos ao painel de salas, o uso de laboratórios rotativos muda diariamente! | Tenham uma excelente aula.";
+
+// Banco de Dados de Alunos para Simulação de Frequência (Carteirinha RFID/NFC)
+const alunosMatriculados = [
+    { id: "1001", nome: "Ana Beatriz Souza", turma: "Redes P1 Noite", avatarBg: "#ff007f", iniciais: "AB" },
+    { id: "1002", nome: "Carlos Henrique Lima", turma: "Redes P2 Noite", avatarBg: "#00f2ff", iniciais: "CH" },
+    { id: "1003", nome: "Daniela Santos Cruz", turma: "Redes P3 Noite", avatarBg: "#39ff14", iniciais: "DS" },
+    { id: "1004", nome: "Eduardo Rocha Costa", turma: "Informatica P1 Noite", avatarBg: "#ffc107", iniciais: "ER" },
+    { id: "1005", nome: "Fernanda Ribeiro", turma: "Informatica P2 Noite", avatarBg: "#9c27b0", iniciais: "FR" },
+    { id: "1006", nome: "Gustavo Nogueira", turma: "Informatica P3 Noite", avatarBg: "#4caf50", iniciais: "GN" },
+    { id: "1007", nome: "Isabela Oliveira", turma: "Administração Noite", avatarBg: "#e91e63", iniciais: "IO" },
+    { id: "1008", nome: "João Victor Silva", turma: "Eventos Noite", avatarBg: "#00bcd4", iniciais: "JV" },
+    { id: "1009", nome: "Lucas Ferreira", turma: "Redes P1 Noite", avatarBg: "#ff5722", iniciais: "LF" },
+    { id: "1010", nome: "Mariana Alencar", turma: "Informatica P2 Noite", avatarBg: "#03a9f4", iniciais: "MA" },
+    { id: "1011", nome: "Rodrigo Carvalho", turma: "Informatica P3 Noite", avatarBg: "#8bc34a", iniciais: "RC" },
+    { id: "1012", nome: "Beatriz M. Santos", turma: "Redes P3 Noite", avatarBg: "#e040fb", iniciais: "BS" }
+];

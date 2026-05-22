@@ -1,59 +1,157 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Rotatividade de Salas - EETEPA</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orion | Painel Escolar em Tempo Real - EETEPA Vilhena Alves</title>
+  
+  <!-- Fontes e Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container-principal">
-        
-        <!-- PAINEL DA ESQUERDA: AS TURMAS E ONDE ESTÃO AGORA -->
-        <section class="secao-esquerda">
-            <div class="topo-tabela">
-                <h2>EETEPA VILHENA ALVES - QUADRO DE SALAS HOJE</h2>
-                <div id="indicador-pagina">PÁGINA 1 DE 1</div>
-            </div>
-            
-            <table class="painel-tabela">
-                <thead>
-                    <tr>
-                        <th>TURMA</th>
-                        <th>DISCIPLINA</th>
-                        <th>PROFESSOR</th>
-                        <th>LOCAL DE HOJE</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-corpo">
-                    <!-- Gerado dinamicamente -->
-                </tbody>
-            </table>
-        </section>
-
-        <!-- PAINEL DA DIREITA: RELÓGIO + CARROSSEL DE MAPAS/AVISOS -->
-        <aside class="secao-direita">
-            <div class="card-relogio">
-                <div id="relogio">00:00:00</div>
-                <div id="data-atual">Carregando data...</div>
-            </div>
-
-            <!-- CONTAINER DINÂMICO QUE MUTA SOZINHO -->
-            <div class="card-midia-alternante" id="container-midia">
-                <!-- O JavaScript vai alternar entre texto de aviso e imagem do mapa aqui -->
-            </div>
-        </aside>
-
+  <!-- CABEÇALHO SUPERIOR -->
+  <header class="site-header">
+    <div class="brand-wrapper">
+      <h1 class="logo-orion">ORION</h1>
+      <span class="brand-subtitle">Monitoramento Escolar & Frequência</span>
     </div>
+    
+    <div class="header-controls">
+      <div class="status-badge-live">
+        <span></span>LIVE FEED
+      </div>
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar Tema">
+        <i id="theme-icon" class="fa-solid fa-sun"></i>
+      </button>
+    </div>
+  </header>
 
-    <footer class="rodape-urgente">
-        <div class="marquete-container">
-            <span id="texto-corrido">Carregando...</span>
+  <!-- CONTAINER DE GRIDS PRINCIPAIS -->
+  <main class="container-principal">
+    
+    <!-- COLUNA 1: ALOCAÇÃO DE SALAS HOJE -->
+    <section class="panel-card secao-salas-col">
+      <div class="panel-header">
+        <h2><i class="fa-solid fa-chalkboard-user"></i> Quadro de Salas Hoje</h2>
+        <div id="indicador-pagina">Carregando...</div>
+      </div>
+      
+      <div class="table-wrapper">
+        <table class="painel-tabela">
+          <thead>
+            <tr>
+              <th>TURMA</th>
+              <th>DISCIPLINA</th>
+              <th>PROFESSOR</th>
+              <th>LOCAL HOJE</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-corpo">
+            <!-- Gerado Dinamicamente por script.js -->
+            <tr>
+              <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2rem;">Carregando dados das salas...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- COLUNA 2: FREQUÊNCIA DE PORTARIA E RFID -->
+    <section class="panel-card secao-frequencia-col">
+      <div class="panel-header">
+        <h2><i class="fa-solid fa-address-card"></i> Frequência da Portaria</h2>
+        <span style="font-size: 0.72rem; font-weight: bold; color: var(--neon-cyan); font-family: var(--font-display);">RFID ACTIVATED</span>
+      </div>
+      
+      <!-- Lista de Eventos Recentes -->
+      <div id="feed-frequencia" class="feed-list">
+        <!-- Logs dinâmicos inseridos aqui -->
+        <div style="text-align: center; color: var(--text-muted); padding: 3rem 0; font-size: 0.88rem;">
+          <i class="fa-solid fa-wave-square" style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block; color: var(--border-glow);"></i>
+          Aguardando leitura de cartões...
         </div>
-    </footer>
+      </div>
 
-    <script src="dados.js"></script>
-    <script src="script.js"></script>
+      <!-- Simulador de Leitura (Swipe) -->
+      <div class="terminal-simulator" style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+        <div class="terminal-title">
+          <i class="fa-solid fa-terminal"></i> Terminal RFID/NFC Simulado
+        </div>
+        <div class="terminal-row">
+          <select id="student-select" class="terminal-select" aria-label="Selecionar Aluno para Simulação">
+            <!-- Preenchido dinamicamente com alunosMatriculados -->
+          </select>
+          <select id="swipe-direction" class="terminal-select" aria-label="Direção da Movimentação">
+            <option value="Entrada">Entrada (Check-in)</option>
+            <option value="Saída">Saída (Check-out)</option>
+          </select>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.25rem;">
+          <label class="auto-sim-checkbox-wrapper">
+            <input type="checkbox" id="auto-sim-toggle" checked />
+            Auto-simular fluxo (12s)
+          </label>
+          <button id="btn-swipe" class="swipe-action-btn">
+            <i class="fa-solid fa-id-card"></i> Simular Crachá
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLUNA 3: RELÓGIO + MAPAS/AVISOS + CRÉDITOS -->
+    <aside class="secao-direita-col">
+      
+      <!-- Relógio e Data -->
+      <div class="card-relogio">
+        <div id="relogio">00:00:00</div>
+        <div id="data-atual">Carregando data...</div>
+      </div>
+
+      <!-- Carrossel de Mídias Alternantes -->
+      <div class="panel-card card-midia-alternante" id="container-midia">
+        <!-- JavaScript altera entre avisos e mapas -->
+      </div>
+
+      <!-- Créditos Equipe -->
+      <div class="panel-card credits-box" style="flex: 0 0 auto; min-height: 120px;">
+        <div class="credits-title">Desenvolvido pela Equipe Orion</div>
+        <div class="credits-grid">
+          <div class="credit-item">
+            <h5>Raimundo</h5>
+            <p>Gerente</p>
+          </div>
+          <div class="credit-item">
+            <h5>Estelita</h5>
+            <p>HTML</p>
+          </div>
+          <div class="credit-item">
+            <h5>Fabio</h5>
+            <p>CSS</p>
+          </div>
+          <div class="credit-item">
+            <h5>Adrian</h5>
+            <p>JavaScript</p>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- RODAPÉ MARQUEE -->
+  <footer class="rodape-urgente">
+    <div class="marquete-container">
+      <span id="texto-corrido">Carregando informações da EETEPA...</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="dados.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
